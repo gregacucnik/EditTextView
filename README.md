@@ -25,9 +25,13 @@ Android widget combination of ImageView, EditText and TextView.
                     app:ettEmptyText="Add text&#8230;" />
 ```
 
-3. (Optional) Implement OnClickListener for EditTextView parent layout and requestFocus (this is needed if you want to exit EditMode when you click outside of EditTextView)
+3. (Optional - if you want to exit EditMode when you click outside of EditTextView) Implement OnClickListener for EditTextView parent layout and requestFocus.
+
     ```
         final LinearLayout llContainer = (LinearLayout)findViewById(R.id.llContainer);
+        
+        llContainer.setClickable(true);
+        llContainer.setFocusable(true);
 
         llContainer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +40,7 @@ Android widget combination of ImageView, EditText and TextView.
             }
         });
 ```
+
 
 # Customization
 
