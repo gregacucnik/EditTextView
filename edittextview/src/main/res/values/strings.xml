@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">EditTextView</string>
+    <string name="default_empty_text">Add text&#8230;</string>
+</resources>

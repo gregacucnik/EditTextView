@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/ettContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/selectable_group">
+
+    <ImageView
+        android:id="@+id/ettImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:id="@+id/rlText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ettImageView"
+        android:layout_toEndOf="@+id/ettImageView">
+    <TextView
+        android:id="@+id/ettTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="10dp"
+
+        android:layout_centerVertical="true"
+        android:textSize="16sp"
+        android:textColor="#000"
+        android:text="text"/>
+
+    <com.gregacucnik.ETT_EditText
+        android:id="@+id/ettEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_centerVertical="true"
+        android:inputType="textCapSentences"
+        android:visibility="invisible"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:text="text"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

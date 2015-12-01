@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context="com.gregacucnik.edittextviewdemo.MainActivity">
+
+    <com.gregacucnik.EditTextView
+        android:id="@+id/ettExample1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:ettIcon="@drawable/ic_clock_black_24dp"
+        app:ettIconEmpty="@drawable/ic_clock_grey600_24dp"
+        app:ettIconInEditMode="@drawable/ic_clock_blue_24dp"
+        app:ettEmptyTexStyle="normal"
+        app:ettShowHint="false"
+        app:ettEmptyText="Add text&#8230;" />
+
+    <com.gregacucnik.EditTextView
+        android:id="@+id/ettExample2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:ettIcon="@drawable/ic_camera_black_24dp"
+        app:ettIconEmpty="@drawable/ic_camera_grey600_24dp"
+        app:ettIconInEditMode="@drawable/ic_camera_blue_24dp"
+        app:ettText="Random text"
+        app:ettEmptyTexStyle="normal"
+        app:ettShowHint="false"
+        app:ettEmptyText="Add text&#8230;" />
+
+    <com.gregacucnik.EditTextView
+        android:id="@+id/ettExample3"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:ettIcon="@drawable/ic_file_document_box_black_24dp"
+        app:ettIconEmpty="@drawable/ic_file_document_box_grey600_24dp"
+        app:ettIconInEditMode="@drawable/ic_file_document_box_blue_24dp"
+        app:ettEmptyTexStyle="normal"
+        app:ettShowHint="true"
+        app:ettEmptyText="Hint&#8230;" />
+
+    <com.gregacucnik.EditTextView
+        android:id="@+id/ettExample4"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        app:ettTextMarginLeft="16dp"
+        app:ettSelectAllOnEditMode="false"
+        app:ettShowHint="false"
+        app:ettText="No icon &amp; no selection" />
+
+
+</LinearLayout>

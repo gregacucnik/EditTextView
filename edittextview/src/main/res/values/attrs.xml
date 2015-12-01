@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EditTextView">
+
+        <attr name="ettIconEmpty" format="reference" />
+        <attr name="ettIconInEditMode" format="reference" />
+        <attr name="ettIcon" format="reference" />
+        <attr name="ettText" format="string" />
+        <attr name="ettEmptyText" format="string" />
+
+        <attr name="ettEmptyTexStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+
+        <attr name="ettTextColor" format="color" />
+        <attr name="ettEmptyColor" format="color" />
+        <attr name="ettSelectAllOnEditMode" format="boolean" />
+        <attr name="ettShowHint" format="boolean" />
+        <attr name="ettIconMarginLeft" format="dimension" />
+        <attr name="ettIconMarginRight" format="dimension" />
+        <attr name="ettTextMarginLeft" format="dimension" />
+        <attr name="ettTextMarginRight" format="dimension" />
+        <attr name="ettTextSize" format="dimension" />
+    </declare-styleable>
+</resources>
