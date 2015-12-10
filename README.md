@@ -63,8 +63,6 @@ Android widget combination of ImageView, EditText and TextView based on Material
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-EditTextView-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2889)
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-EditTextView-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2889)
-
 License
 =======
 The MIT License (MIT)
