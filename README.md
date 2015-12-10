@@ -1,5 +1,5 @@
 # EditTextView
-Android widget combination of ImageView, EditText and TextView.
+Android widget combination of ImageView, EditText and TextView based on Material Design guidelines.
 
 ![Sample Screenshot](https://raw.githubusercontent.com/gregacucnik/EditTextView/master/edittextview.gif)
 
@@ -8,7 +8,7 @@ Android widget combination of ImageView, EditText and TextView.
 
 1. Add the dependency in your build.gradle
 
-            compile 'com.gregacucnik:edittextview:1.0'
+            compile 'com.gregacucnik:edittextview:1.1'
             
 2. Include EditTextView widget in your layout
     
@@ -47,18 +47,21 @@ Android widget combination of ImageView, EditText and TextView.
  * `ettIcon` Icon when EditTextView has text
  * `ettIconEmpty` Icon when EditTextView is empty (if not set, ettIcon is used, if set)
  * `ettIconInEditMode` Optional icon when EditTextView is in EditMode (if not set, ettIcon is used, if set)
- * `ettText` EditTextView value
+ * `ettText` EditTextView text
  * `ettEmptyText` Optional hint text to show when ettText is empty
- * `ettEmptyTexStyle` Text Style for Empty Hint Text
- * `ettTextColor` Text color when not empty
- * `ettEmptyColor` Text color for Empty Hint Text
- * `ettSelectAllOnEditMode` Auto-select text when in EditMode
- * `ettShowHint` Show empty hint text when in EditMode
- * `ettIconMarginLeft` Left margin for icon
- * `ettIconMarginRight` Right margin for icon
- * `ettTextMarginLeft` Left margin for Text (Text is to the right of icon)
- * `ettTextMarginRight` Right margin for Text
+ * `ettEmptyTexStyle` Custom text style for ettEmptyText
+ * `ettTextColor` Custom text color when not empty
+ * `ettEmptyColor` Custom text color for ettEmptyText
+ * `ettSelectAllOnEditMode` Auto-select text when in EditMode (default: true)
+ * `ettShowHint` Show empty hint text when in EditMode (default: true)
+ * `ettIconMarginLeft` Custom left margin for icon
+ * `ettIconMarginRight` Custom right margin for icon
+ * `ettTextMarginLeft` Custom left margin for text
+ * `ettTextMarginRight` Custom right margin for text
  * `ettTextSize` Custom text size
+ * `ettLocked` Lock or unlock EditTextView (default: false)
+
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-EditTextView-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2889)
 
 License
 =======

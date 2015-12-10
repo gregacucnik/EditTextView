@@ -23,5 +23,7 @@
         <attr name="ettTextMarginLeft" format="dimension" />
         <attr name="ettTextMarginRight" format="dimension" />
         <attr name="ettTextSize" format="dimension" />
+        <attr name="ettLocked" format="boolean" />
+
     </declare-styleable>
 </resources>

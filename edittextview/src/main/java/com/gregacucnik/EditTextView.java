@@ -23,6 +23,7 @@ import com.gregacucnik.edittextview.R;
  */
 public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditTextListener, View.OnFocusChangeListener{
 
+    private RelativeLayout rlContainer;
     private ImageView ettImageView;
     private TextView ettTextView;
     private ETT_EditText ettEditText;
@@ -38,6 +39,7 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
 
     private boolean selectOnFocus;
     private boolean showHint;
+    private boolean locked;
 
     private EditTextViewListener mListener;
 
@@ -63,7 +65,7 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
         ettEditText.setOnKeyboardDismissedListener(this);
         ettEditText.setOnFocusChangeListener(this);
 
-        RelativeLayout rlContainer = (RelativeLayout)findViewById(R.id.ettContainer);
+        rlContainer = (RelativeLayout)findViewById(R.id.ettContainer);
 
         Resources res = getResources();
 
@@ -84,6 +86,7 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
             icon = a.getResourceId(R.styleable.EditTextView_ettIcon, 0);
             iconEmpty = a.getResourceId(R.styleable.EditTextView_ettIconEmpty, icon);
             iconInEditMode = a.getResourceId(R.styleable.EditTextView_ettIconInEditMode, icon);
+            locked = a.getBoolean(R.styleable.EditTextView_ettLocked, false);
 
             setEmptyText(a.getString(R.styleable.EditTextView_ettEmptyText));
             setText(a.getString(R.styleable.EditTextView_ettText));
@@ -117,7 +120,10 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
 //            showEditText();
 //        else
 //            showTextView();
+
+        checkLocked();
     }
+
 
 
 
@@ -158,6 +164,13 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
         toggleLayout();
     }
 
+    @Override
+    public void onEditTextKeyboardDone() {
+        toggleLayout();
+    }
+
+    /****/
+
     private static class SavedState extends BaseSavedState {
         String text;
         String empty;
@@ -165,6 +178,7 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
         boolean editmode;
         boolean select;
         boolean hint;
+        boolean locked;
 
         SavedState(Parcelable superState) {
             super(superState);
@@ -178,6 +192,7 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
             select = in.readInt() == 1;
             hint = in.readInt() == 1;
             editmode = in.readInt() == 1;
+            locked = in.readInt() == 1;
         }
 
         @Override
@@ -189,7 +204,7 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
             out.writeInt(select ? 1 : 0);
             out.writeInt(hint ? 1 : 0);
             out.writeInt(editmode ? 1 : 0);
-//            out.writeInt(animate ? 1 : 0);
+            out.writeInt(locked ? 1 : 0);
         }
 
         public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
@@ -207,6 +222,7 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
     public Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
         SavedState ss = new SavedState(superState);
+
         ss.text = ettEditText.getText().toString();
         ss.empty = this.emptyText;
 
@@ -214,7 +230,7 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
         ss.hint = showHint;
 
         ss.editmode = isInEditMode;
-//        ss.animate = animateChanges;
+        ss.locked = locked;
 
         if(isInEditMode) {
             InputMethodManager imm = (InputMethodManager) getContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -229,18 +245,21 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
     public void onRestoreInstanceState(Parcelable state) {
         SavedState ss = (SavedState) state;
         super.onRestoreInstanceState(ss.getSuperState());
-//        animateChanges = ss.animate;
+
         setText(ss.text);
         setEmptyText(ss.empty);
 
         selectOnFocus = ss.select;
         showHint = ss.hint;
         isInEditMode = ss.editmode;
+        locked = ss.locked;
 
         if(isInEditMode) {
             showEditText();
         }else
             showTextView();
+
+        checkLocked();
     }
 
     @Override
@@ -261,6 +280,10 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
         }else{              // EditText will be visible
             showEditText();
         }
+    }
+
+    private void checkLocked() {
+        rlContainer.setEnabled(!locked);
     }
 
     private void showTextView(){
@@ -345,7 +368,7 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
 
     /**
      * Change text when empty or for hint (if enabled).
-     * @param emptyText
+     * @param emptyText String
      */
     public void setEmptyText(String emptyText){
         if(emptyText == null || emptyText.isEmpty())
@@ -367,6 +390,26 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
             ettImageView.setVisibility(View.VISIBLE);
 
         ettImageView.setImageResource(res);
+    }
+
+    /**
+     * Check if EditTextView is locked.
+     * @return boolean
+     */
+    public boolean isLocked(){
+        return locked;
+    }
+
+    /**
+     * Lock or unlock EditTextView.
+     * @param locked boolean
+     */
+    public void setLocked(boolean locked){
+        this.locked = locked;
+
+        leaveEditMode();
+
+        checkLocked();
     }
 
 }
