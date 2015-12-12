@@ -112,19 +112,20 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
         rlContainer.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleLayout();
+                toggleLayout(true);
             }
         });
-
-//        if(isInEditMode)
-//            showEditText();
-//        else
-//            showTextView();
 
         checkLocked();
     }
 
-
+    /**
+     * Set callback listener for EditTextView changes
+     * @param listener EditTextViewListener
+     */
+    public void setEditTextViewListener(EditTextViewListener listener){
+        this.mListener= listener;
+    }
 
 
     private static void setMargins(final View view, final int marginLeft, final int marginRight) {
@@ -141,7 +142,7 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
     public void onFocusChange(View v, boolean hasFocus) {
         if(v instanceof EditText){
             if(isInEditMode && !hasFocus)
-               toggleLayout();
+               toggleLayout(true);
         }
     }
 
@@ -161,15 +162,15 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
 
     @Override
     public void onEditTextKeyboardDismissed() {
-        toggleLayout();
+        toggleLayout(false);
     }
 
     @Override
     public void onEditTextKeyboardDone() {
-        toggleLayout();
+        toggleLayout(false);
     }
 
-    /****/
+    /** SAVED INSTANCE **/
 
     private static class SavedState extends BaseSavedState {
         String text;
@@ -255,9 +256,9 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
         locked = ss.locked;
 
         if(isInEditMode) {
-            showEditText();
+            showEditText(false);    // false - prevent notifying callback listener because state restored
         }else
-            showTextView();
+            showTextView(false);    // false - prevent notifying callback listener because state restored
 
         checkLocked();
     }
@@ -274,11 +275,11 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
 
     /****/
 
-    private void toggleLayout(){
-        if(isInEditMode) {  // TextView will be visible
-            showTextView();
-        }else{              // EditText will be visible
-            showEditText();
+    private void toggleLayout(boolean notifyListener){
+        if(isInEditMode) {
+            showTextView(notifyListener);   // TextView will be visible
+        }else{
+            showEditText(notifyListener);   // EditText will be visible
         }
     }
 
@@ -287,6 +288,10 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
     }
 
     private void showTextView(){
+        showTextView(true);
+    }
+
+    private void showTextView(boolean notifyListener){
         setTextViewText(ettEditText.getText().toString());
         ettTextView.setVisibility(View.VISIBLE);
         ettEditText.setVisibility(View.INVISIBLE);
@@ -295,12 +300,16 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
 
         isInEditMode = false;
 
-        if(mListener != null) {
+        if(mListener != null && notifyListener) {
             mListener.onEditTextViewEditModeFinish(ettEditText.getText().toString());
         }
     }
 
     private void showEditText(){
+        showEditText(true);
+    }
+
+    private void showEditText(boolean notifyListener){
         ettTextView.setVisibility(View.INVISIBLE);
         ettEditText.setVisibility(View.VISIBLE);
 
@@ -317,7 +326,7 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
 
         isInEditMode = true;
 
-        if(mListener != null)
+        if(mListener != null && notifyListener)
             mListener.onEditTextViewEditModeStart();
     }
 

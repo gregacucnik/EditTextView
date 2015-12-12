@@ -41,6 +41,8 @@ Android widget combination of ImageView, EditText and TextView based on Material
         });
 ```
 
+4. (Optional) Implement `EditTextViewListener` to get callbacks for `onEditTextViewEditModeStart()` and `onEditTextViewEditModeFinish(String text)`.
+
 
 # Customization
 

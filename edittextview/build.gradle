@@ -10,7 +10,7 @@ ext {
 
     libraryDescription = 'Android widget combination of ImageView, EditText and TextView based on Material Design guidelines.'
 
-    libraryVersion = '1.1'
+    libraryVersion = '1.2'
 
     developerId = 'gregacucnik'
     developerName = 'Grega Čučnik'
@@ -24,8 +24,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 2
-        versionName "1.1"
+        versionCode 3
+        versionName "1.2"
     }
     buildTypes {
         release {
