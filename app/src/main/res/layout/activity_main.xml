@@ -14,10 +14,11 @@
     <com.gregacucnik.EditTextView
         android:id="@+id/ettExample1"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         app:ettIcon="@drawable/ic_clock_black_24dp"
         app:ettIconEmpty="@drawable/ic_clock_grey600_24dp"
         app:ettIconInEditMode="@drawable/ic_clock_blue_24dp"
+        app:ettMarginTopBottom="16dp"
         app:ettEmptyTexStyle="normal"
         app:ettShowHint="false"
         app:ettEmptyText="Add text&#8230;" />
@@ -25,11 +26,12 @@
     <com.gregacucnik.EditTextView
         android:id="@+id/ettExample2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         app:ettIcon="@drawable/ic_camera_black_24dp"
         app:ettIconEmpty="@drawable/ic_camera_grey600_24dp"
         app:ettIconInEditMode="@drawable/ic_camera_blue_24dp"
-        app:ettText="Random text"
+        app:ettTextSize="14sp"
+        app:ettText="Random 14sp text"
         app:ettEmptyTexStyle="normal"
         app:ettShowHint="false"
         app:ettEmptyText="Add text&#8230;" />
@@ -37,19 +39,22 @@
     <com.gregacucnik.EditTextView
         android:id="@+id/ettExample3"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
+        android:inputType="textCapSentences|textMultiLine"
         app:ettIcon="@drawable/ic_file_document_box_black_24dp"
         app:ettIconEmpty="@drawable/ic_file_document_box_grey600_24dp"
         app:ettIconInEditMode="@drawable/ic_file_document_box_blue_24dp"
         app:ettEmptyTexStyle="normal"
         app:ettShowHint="true"
+        app:ettMaxLines="4"
         app:ettEmptyText="Hint&#8230;" />
 
     <com.gregacucnik.EditTextView
         android:id="@+id/ettExample4"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         app:ettTextMarginLeft="16dp"
+        app:ettMarginTopBottom="16dp"
         app:ettSelectAllOnEditMode="false"
         app:ettShowHint="false"
         app:ettText="No icon &amp; no selection" />

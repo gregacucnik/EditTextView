@@ -2,31 +2,32 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/ettContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 style="@style/selectable_group">
 
     <ImageView
         android:id="@+id/ettImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/rlText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:layout_toRightOf="@+id/ettImageView"
         android:layout_toEndOf="@+id/ettImageView">
 
         <TextView
             android:id="@+id/ettTextView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:layout_marginStart="4dp"
-            android:gravity="center_vertical"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
             android:textSize="16sp"
             android:textColor="#000"
             android:text="----" />
@@ -35,8 +36,6 @@
             android:id="@+id/ettEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingTop="11dp"
             android:inputType="textCapSentences"
             android:imeOptions="actionDone"
             android:visibility="invisible"

@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -88,18 +89,40 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
             iconInEditMode = a.getResourceId(R.styleable.EditTextView_ettIconInEditMode, icon);
             locked = a.getBoolean(R.styleable.EditTextView_ettLocked, false);
 
+            /* Text Size */
+            int textSize = a.getDimensionPixelSize(R.styleable.EditTextView_ettTextSize, getScaledPixels(16));
+            if(textSize < getScaledPixels(12))
+                textSize = getScaledPixels(12);
+
+            ettTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+            ettEditText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+
+            /* Input Type */
+            int inputType = a.getInt(R.styleable.EditTextView_android_inputType, EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES);
+            ettEditText.setInputType(inputType);
+
+            int maxLines = a.getInt(R.styleable.EditTextView_ettMaxLines, 1);
+            ettEditText.setMaxLines(maxLines);
+
             setEmptyText(a.getString(R.styleable.EditTextView_ettEmptyText));
             setText(a.getString(R.styleable.EditTextView_ettText));
+
+            /* Margins */
+            int marginTopBottom = a.getDimensionPixelSize(R.styleable.EditTextView_ettMarginTopBottom, getPixels(8) + (textSize - getPixels(12)));
+
+            if(marginTopBottom < 0)
+                marginTopBottom = getPixels(8) + (textSize - getPixels(12));
 
             int iconMarginLeft = a.getDimensionPixelSize(R.styleable.EditTextView_ettIconMarginLeft, getPixels(16));
             int iconMarginRight = a.getDimensionPixelSize(R.styleable.EditTextView_ettIconMarginRight, getPixels(32));
 
-            setMargins(ettImageView, iconMarginLeft, iconMarginRight);
+            setMargins(ettImageView, marginTopBottom, marginTopBottom, iconMarginLeft, iconMarginRight);
 
+            int textMarginTopBottom = marginTopBottom - (getPixels(8) + textSize - getPixels(12))  + (int) ((textSize - getPixels(12))*0.5f);
             int textMarginLeft = a.getDimensionPixelSize(R.styleable.EditTextView_ettTextMarginLeft, getPixels(0));
             int textMarginRight = a.getDimensionPixelSize(R.styleable.EditTextView_ettTextMarginLeft, getPixels(8));
 
-            setMargins(findViewById(R.id.rlText), textMarginLeft, textMarginRight);
+            setMargins(findViewById(R.id.rlText), textMarginTopBottom, textMarginTopBottom, textMarginLeft, textMarginRight);
 
         } finally {
             a.recycle();
@@ -128,14 +151,18 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
     }
 
 
-    private static void setMargins(final View view, final int marginLeft, final int marginRight) {
+    private static void setMargins(final View view, final int marginTop, final int marginBottom, final int marginLeft, final int marginRight) {
         final RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)view.getLayoutParams();
-        lp.setMargins(marginLeft, lp.topMargin, marginRight, lp.bottomMargin);
+        lp.setMargins(marginLeft, marginTop == -1 ? lp.topMargin : marginTop, marginRight, marginBottom == -1 ? lp.bottomMargin : marginBottom);
         view.setLayoutParams(lp);
     }
 
     private int getPixels(float dp){
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+    }
+
+    private int getScaledPixels(float dp){
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, dp, getResources().getDisplayMetrics());
     }
 
     @Override
@@ -419,6 +446,14 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
         leaveEditMode();
 
         checkLocked();
+    }
+
+    /**
+     * Check if EditTextView is in EditMode
+     * @return boolean
+     */
+    public boolean isInEditMode(){
+        return isInEditMode;
     }
 
 }

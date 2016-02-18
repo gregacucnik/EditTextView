@@ -8,7 +8,7 @@ Android widget combination of ImageView, EditText and TextView based on Material
 
 1. Add the dependency in your build.gradle
 
-            compile 'com.gregacucnik:edittextview:1.1'
+            compile 'com.gregacucnik:edittextview:1.4'
             
 2. Include EditTextView widget in your layout
     
@@ -45,23 +45,28 @@ Android widget combination of ImageView, EditText and TextView based on Material
 
 
 # Customization
+Add `xmlns:app="http://schemas.android.com/apk/res-auto"` to (root) layout
 
- * `ettIcon` Icon when EditTextView has text
- * `ettIconEmpty` Icon when EditTextView is empty (if not set, ettIcon is used, if set)
- * `ettIconInEditMode` Optional icon when EditTextView is in EditMode (if not set, ettIcon is used, if set)
- * `ettText` EditTextView text
- * `ettEmptyText` Optional hint text to show when ettText is empty
- * `ettEmptyTexStyle` Custom text style for ettEmptyText
- * `ettTextColor` Custom text color when not empty
- * `ettEmptyColor` Custom text color for ettEmptyText
- * `ettSelectAllOnEditMode` Auto-select text when in EditMode (default: true)
- * `ettShowHint` Show empty hint text when in EditMode (default: true)
- * `ettIconMarginLeft` Custom left margin for icon
- * `ettIconMarginRight` Custom right margin for icon
- * `ettTextMarginLeft` Custom left margin for text
- * `ettTextMarginRight` Custom right margin for text
- * `ettTextSize` Custom text size
- * `ettLocked` Lock or unlock EditTextView (default: false)
+ * `app:ettIcon` Icon when EditTextView has text
+ * `app:ettIconEmpty` Icon when EditTextView is empty (if not set, ettIcon is used, if set)
+ * `app:ettIconInEditMode` Optional icon when EditTextView is in EditMode (if not set, ettIcon is used, if set)
+ * `app:ettText` EditTextView text
+ * `app:ettEmptyText` Optional hint text to show when ettText is empty
+ * `app:ettEmptyTexStyle` Custom text style for ettEmptyText
+ * `app:ettTextColor` Custom text color when not empty
+ * `app:ettEmptyColor` Custom text color for ettEmptyText
+ * `app:ettSelectAllOnEditMode` Auto-select text when in EditMode (default: true)
+ * `app:ettShowHint` Show empty hint text when in EditMode (default: true)
+ * `app:ettMarginTopBottom` Custom top and bottom margin for the whole view
+ * `app:ettIconMarginLeft` Custom left margin for icon
+ * `app:ettIconMarginRight` Custom right margin for icon
+ * `app:ettTextMarginLeft` Custom left margin for text
+ * `app:ettTextMarginRight` Custom right margin for text
+ * `app:ettTextSize` Custom text size (min: 12sp)
+ * `app:ettLocked` Lock or unlock EditTextView (default: false)
+ * `app:ettMaxLines` Max lines for EditText, if input type textMultiLine (default: 1)
+ * `android:inputType` Input type for EditText (default: textCapSentences)
+
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-EditTextView-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2889)
 
