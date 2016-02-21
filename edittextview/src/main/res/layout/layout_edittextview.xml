@@ -3,12 +3,15 @@
                 android:id="@+id/ettContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/selectable_group">
+                style="@style/selectable_group"
+    >
 
     <ImageView
         android:id="@+id/ettImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:visibility="gone" />
@@ -25,6 +28,10 @@
             android:id="@+id/ettTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:textDirection="locale"
+            android:gravity="start"
             android:layout_marginLeft="4dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="10dp"
@@ -36,6 +43,10 @@
             android:id="@+id/ettEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:textDirection="locale"
+            android:gravity="start"
             android:inputType="textCapSentences"
             android:imeOptions="actionDone"
             android:visibility="invisible"
