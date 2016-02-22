@@ -8,7 +8,7 @@ Android widget combination of ImageView, EditText and TextView based on Material
 
 1. Add the dependency in your build.gradle
 
-            compile 'com.gregacucnik:edittextview:1.4'
+            compile 'com.gregacucnik:edittextview:1.5'
             
 2. Include EditTextView widget in your layout
     
