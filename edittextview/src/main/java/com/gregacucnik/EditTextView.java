@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -155,6 +156,10 @@ public class EditTextView extends RelativeLayout implements ETT_EditText.OnEditT
         final RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)view.getLayoutParams();
         lp.setMargins(marginLeft, marginTop == -1 ? lp.topMargin : marginTop, marginRight, marginBottom == -1 ? lp.bottomMargin : marginBottom);
         view.setLayoutParams(lp);
+
+        // Fix for older Android version (<4.3) because of a bug in RelativeLayout margins
+        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN_MR2)
+            view.setPadding(0, 0, 0, marginBottom == -1 ? lp.bottomMargin : marginBottom);
     }
 
     private int getPixels(float dp){
