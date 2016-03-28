@@ -8,37 +8,39 @@ Android widget combination of ImageView, EditText and TextView based on Material
 
 1. Add the dependency in your build.gradle
 
-            compile 'com.gregacucnik:edittextview:1.6'
-            
+```groovy
+compile 'com.gregacucnik:edittextview:1.6'
+```
 2. Include EditTextView widget in your layout
-    
-    ```
-            <com.gregacucnik.EditTextView
-                    android:id="@+id/ettExample"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    app:ettIcon="@drawable/icon_normal"
-                    app:ettIconEmpty="@drawable/icon_no_text"
-                    app:ettIconInEditMode="@drawable/icon_when_typing"
-                    app:ettEmptyTexStyle="normal"
-                    app:ettShowHint="false"
-                    app:ettEmptyText="Add text&#8230;" />
+
+```xml
+<com.gregacucnik.EditTextView
+        android:id="@+id/ettExample"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:ettIcon="@drawable/icon_normal"
+        app:ettIconEmpty="@drawable/icon_no_text"
+        app:ettIconInEditMode="@drawable/icon_when_typing"
+        app:ettEmptyTexStyle="normal"
+        app:ettShowHint="false"
+        app:ettEmptyText="Add text&#8230;" />
 ```
 
 3. (Optional - if you want to exit EditMode when you click outside of EditTextView) Implement OnClickListener for EditTextView parent layout and requestFocus.
 
-    ```
-        final LinearLayout llContainer = (LinearLayout)findViewById(R.id.llContainer);
-        
-        llContainer.setClickable(true);
-        llContainer.setFocusable(true);
+```java
 
-        llContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                llContainer.requestFocus();
-            }
-        });
+final LinearLayout llContainer = (LinearLayout)findViewById(R.id.llContainer);
+
+llContainer.setClickable(true);
+llContainer.setFocusable(true);
+
+llContainer.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        llContainer.requestFocus();
+    }
+});
 ```
 
 4. (Optional) Implement `EditTextViewListener` to get callbacks for `onEditTextViewEditModeStart()` and `onEditTextViewEditModeFinish(String text)`.
